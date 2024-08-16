@@ -66,8 +66,3 @@ func get_local_player():
 	return local_player
 
 # ----- private methods
-
-
-
-
-

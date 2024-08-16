@@ -70,4 +70,3 @@ func end_progress_bar():
 
 
 # ----- private methods
-

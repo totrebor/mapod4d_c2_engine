@@ -75,8 +75,3 @@ func _button_enter_into_metaverse_pressed():
 
 func _on_button_main_exit_pressed():
 	get_tree().quit()
-
-
-
-
-

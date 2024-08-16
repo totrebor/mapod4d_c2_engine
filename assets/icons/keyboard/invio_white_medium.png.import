@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/invio_white_medium.png-ee5db28f8943203ab0f54d
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

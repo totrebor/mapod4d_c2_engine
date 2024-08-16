@@ -62,4 +62,3 @@ func _on_start_button_pressed():
 			"res://mapod4d_core/mapod4d_main_menu/mapod4d_main_menu.tscn", true)
 	if error != OK:
 		printerr("_on_start_button_pressed() error emit_signal")
-

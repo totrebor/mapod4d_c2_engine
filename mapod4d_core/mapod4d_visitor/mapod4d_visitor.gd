@@ -443,4 +443,3 @@ func next_status():
 	_hud.set_status(_status)
 
 # ----- private methods
-

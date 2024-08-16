@@ -485,4 +485,3 @@ func _on_m4d_planet_requested(
 			_start_load_scene(planet_res_path)
 	else:
 		mapod4d_print("not found " + planet_res_path)
-

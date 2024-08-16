@@ -57,8 +57,3 @@ func interaction_r():
 	pass
 
 # ----- private methods
-
-
-
-
-
