@@ -1,7 +1,7 @@
 # tool
 
 # class_name
-class_name Mapod4dSceneLoad
+class_name Mapod4dSceneLoader
 
 # extends
 extends Node
@@ -69,7 +69,6 @@ const OSWEBNAME = "web"
 # ----- public variables
 var mapod4d_debug = true
 var _prog_debug = 0
-var utils = Mapod4dUtils.new()
 
 # ----- private variables
 var _current_loaded_scene = null
@@ -77,7 +76,6 @@ var _loading_scene_res_path = ""
 var _mapod4d_run_status = MAPOD4D_RUN_STATUS.STANDARD
 var _progress = [ 0.0 ]
 
-var _current_metaverse_location = utils.MAPOD4D_METAVERSE_LOCATION.M4D_LOCAL
 var _current_metaverse_path = ""
 var _current_metaverse_res_path = ""
 var _current_planet_name = ""
@@ -87,6 +85,9 @@ var _current_planet_name = ""
 @onready var _mapod4d_main = get_node_or_null(MAPOD4D_ROOT)
 @onready var _start_scene_res = preload(MAPOD4D_START)
 @onready var _mapod4d_visitor_res = preload(MAPOD4D_VISITOR)
+@onready var _utils = mapod4dGenLoaderSingleton.getTools()
+@onready var _current_metaverse_location = \
+		Mapod4dTools.MAPOD4D_METAVERSE_LOCATION.M4D_LOCAL
 
 
 # ----- optional built-in virtual _init method
@@ -342,7 +343,7 @@ func _load_scene_ended():
 		## new current scene
 		_current_loaded_scene = scene_instance
 		
-		if (_current_loaded_scene is Mapod4dBaseMetaverse):
+		if (_current_loaded_scene is Mapod4dMetaverse):
 			pass
 		
 		## add visitor OLD
@@ -377,7 +378,7 @@ func _attach_current_loaded_scene_signals():
 # new version need
 func _add_mapod():
 	return
-	if (_current_loaded_scene is Mapod4dBaseMetaverse) or \
+	if (_current_loaded_scene is Mapod4dMetaverse) or \
 	(_current_loaded_scene is Mapod4dPlanetSphere):
 		mapod4d_print("_current_loaded_scene is Mapod4dBaseMetaverse")
 		var place_holder = _current_loaded_scene.get_node_or_null("MapodArea")
@@ -447,11 +448,11 @@ func _on_m4d_scene_requested(scene_res_path, fullscreen_flag):
 ## with the progressbar and the fullscreen flag
 func _on_m4d_metaverse_requested(
 		location, metaverse_id, fullscreen_flag):
-	var metaverse_res_path = utils.get_metaverse_res_path(
+	var metaverse_res_path = _utils.get_metaverse_res_path(
 			location, metaverse_id)
 
-	if location == utils.MAPOD4D_METAVERSE_LOCATION.M4D_PCK:
-		utils.load_metaverse_pck(location, metaverse_id)
+	if location == _utils.MAPOD4D_METAVERSE_LOCATION.M4D_PCK:
+		_utils.load_metaverse_pck(location, metaverse_id)
 	if ResourceLoader.exists(metaverse_res_path):
 		_current_metaverse_location = location
 		_current_metaverse_res_path = metaverse_res_path
@@ -474,7 +475,7 @@ func _on_m4d_metaverse_requested(
 ## with the progressbar and the fullscreen flag
 func _on_m4d_planet_requested(
 		metaverse_res_path: String, planet_id: String, fullscreen_flag):
-	var planet_res_path = utils.get_planet_res_path(
+	var planet_res_path = _utils.get_planet_res_path(
 		metaverse_res_path, planet_id
 	)
 	if ResourceLoader.exists(planet_res_path):

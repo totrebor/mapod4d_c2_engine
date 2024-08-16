@@ -20,8 +20,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-mapod4dSceneLoadSingleton="*res://mapod4d_core/mapod4d_autoload/mapod4d_scene_load.gd"
+mapod4dGenLoaderSingleton="*res://mapod4d_core/mapod4d_autoload/mapod4d_gen_loader.gd"
 mapod4dNetSingleton="*res://mapod4d_core/mapod4d_autoload/mapod4d_net.gd"
+mapod4dSceneLoaderSingleton="*res://mapod4d_core/mapod4d_autoload/mapod4d_scene_loader.gd"
 
 [display]
 

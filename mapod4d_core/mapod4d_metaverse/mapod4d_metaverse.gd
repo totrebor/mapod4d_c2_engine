@@ -30,15 +30,15 @@ const planet_sphere_res = preload(
 # ----- exported variables
 
 # ----- public variables
-var location = Mapod4dUtils.MAPOD4D_METAVERSE_LOCATION.M4D_LOCAL
+var location = Mapod4dTools.MAPOD4D_METAVERSE_LOCATION.M4D_LOCAL
 
 # ----- private variables
 var _list_of_planets = null
 var _metaverse_id = null
 
 # ----- onready variables
-#@onready var _utils = Mapod4dUtils.new()
-var _m_glo = mapod4dSceneLoadSingleton
+@onready var _utils = mapod4dGenLoaderSingleton.getTools()
+@onready var _loader = mapod4dSceneLoaderSingleton
 
 # ----- optional built-in virtual _init method
 
@@ -47,13 +47,13 @@ var _m_glo = mapod4dSceneLoadSingleton
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	location = mapod4dSceneLoadSingleton.current_metaverse_location()
+	location = _loader.current_metaverse_location()
 	_metaverse_id = str(name).to_lower()
-	var list_of_planets_path = _m_glo.utils.get_metaverse_element_res_path(
+	var list_of_planets_path = _utils.get_metaverse_element_res_path(
 			location, _metaverse_id, "list_of_planets.tres"
 	)
 	_list_of_planets = load(list_of_planets_path)
-	mapod4dSceneLoadSingleton.mapod4d_print(
+	_loader.mapod4d_print(
 			"DEBUG Planets " + str(_list_of_planets.list.size()))
 	var placeolder = get_node_or_null("Planets")
 	if placeolder != null:
@@ -64,7 +64,7 @@ func _ready():
 				var planet = planet_sphere_res.instantiate()
 				planet.internal_object.planet_id = planet_data.id
 				planet.internal_object.metaverse_res_path = \
-						_m_glo.utils.get_metaverse_res_path(
+						_utils.get_metaverse_res_path(
 									location, _metaverse_id)
 				planet.set_name(planet_data.id)
 				planet.set_position(Vector3(x_pos, 0, z_pos))

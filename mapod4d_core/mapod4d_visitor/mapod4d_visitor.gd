@@ -71,7 +71,7 @@ enum MAPOD_STATUS {
 
 # ----- private variables
 ## global object (singleton)
-var _m_glo = mapod4dSceneLoadSingleton
+var _m_glo = mapod4dSceneLoaderSingleton
 
 var _status := MAPOD_STATUS.MPD_QUIET
 ## colliding object with interaction e
@@ -124,7 +124,7 @@ func _ready():
 	_hud.set_speed(0)
 	_hud.set_altitude(0)
 	if _hud != null:
-		if mapod4dSceneLoadSingleton.mapod4d_debug == false:
+		if mapod4dSceneLoaderSingleton.mapod4d_debug == false:
 			_hud.disable_debug()
 		if input_disabled_flag == true:
 			_hud.visible = false
@@ -218,23 +218,23 @@ func _physics_process(delta):
 #		print("colliding")
 		var object = _ray_cast.get_collider()
 		if object is Mapod4dObjectStatic:
-			mapod4dSceneLoadSingleton.mapod4d_print("COLLIDING")
+			mapod4dSceneLoaderSingleton.mapod4d_print("COLLIDING")
 			_colliding_object = object
 			var internal_object = object.get_object()
 			if internal_object.intE == true:
-				mapod4dSceneLoadSingleton.mapod4d_print("enableIntE()")
+				mapod4dSceneLoaderSingleton.mapod4d_print("enableIntE()")
 				_int_e_flag = true
 				_hud.enable_int_e()
 			else:
-				mapod4dSceneLoadSingleton.mapod4d_print("disableIntE()")
+				mapod4dSceneLoaderSingleton.mapod4d_print("disableIntE()")
 				_int_e_flag = false
 				_hud.disable_int_e()
 			if internal_object.intR == true:
-				mapod4dSceneLoadSingleton.mapod4d_print("enableIntR()")
+				mapod4dSceneLoaderSingleton.mapod4d_print("enableIntR()")
 				_int_r_flag = true
 				_hud.enable_int_r()
 			else:
-				mapod4dSceneLoadSingleton.mapod4d_print("disableIntR()")
+				mapod4dSceneLoaderSingleton.mapod4d_print("disableIntR()")
 				_int_r_flag = false
 				_hud.disable_int_r()
 
@@ -244,9 +244,9 @@ func _physics_process(delta):
 					_do_interaction_e = false
 					if _bounce_interact_e.is_stopped() == true:
 						set_status(MAPOD_STATUS.MPD_INTERACTION)
-						mapod4dSceneLoadSingleton.mapod4d_print("E before")
+						mapod4dSceneLoaderSingleton.mapod4d_print("E before")
 						_colliding_object.interaction_e()
-						mapod4dSceneLoadSingleton.mapod4d_print("E after")
+						mapod4dSceneLoaderSingleton.mapod4d_print("E after")
 						## end of interaction
 						if _colliding_object.internal_object.request_check():
 							_handle_object_request()
@@ -256,9 +256,9 @@ func _physics_process(delta):
 				if _do_interaction_r == true:
 					_do_interaction_r = false
 					if _bounce_interact_r.is_stopped() == true:
-						mapod4dSceneLoadSingleton.mapod4d_print("R before")
+						mapod4dSceneLoaderSingleton.mapod4d_print("R before")
 						_colliding_object.interaction_r()
-						mapod4dSceneLoadSingleton.mapod4d_print("R after")
+						mapod4dSceneLoaderSingleton.mapod4d_print("R after")
 						## end of interaction
 						if _colliding_object.internal_object.request_check():
 							_handle_object_request()
@@ -268,8 +268,8 @@ func _physics_process(delta):
 		_int_r_flag = false
 		_hud.disable_int_e()
 		_hud.disable_int_r()
-		mapod4dSceneLoadSingleton.mapod4d_print("disableIntE()")
-		mapod4dSceneLoadSingleton.mapod4d_print("disableIntR()")
+		mapod4dSceneLoaderSingleton.mapod4d_print("disableIntE()")
+		mapod4dSceneLoaderSingleton.mapod4d_print("disableIntR()")
 	
 	var speed = Vector3(
 			_input_right_speed,_input_up_speed, _input_forward_speed)

@@ -1,11 +1,3 @@
-# tool
-
-# class_name
-class_name Mapod4dUtils
-
-# extends
-extends RefCounted
-
 ## A brief description of your script.
 ##
 ## A more detailed description of the script.
@@ -13,6 +5,13 @@ extends RefCounted
 ## @tutorial:			http://the/tutorial1/url.com
 ## @tutorial(Tutorial2): http://the/tutorial2/url.com
 
+# tool
+
+# class_name
+class_name Mapod4dTools
+
+# extends
+extends RefCounted
 
 # ----- signals
 
@@ -87,13 +86,13 @@ func build_user_configuration():
 func get_multiverse_location(location: MAPOD4D_METAVERSE_LOCATION):
 	var ret_val = "res://mapod4d_multiverse"
 	match location:
-		Mapod4dUtils.MAPOD4D_METAVERSE_LOCATION.M4D_LOCAL:
+		MAPOD4D_METAVERSE_LOCATION.M4D_LOCAL:
 			ret_val = "res://mapod4d_multiverse_local"
-		Mapod4dUtils.MAPOD4D_METAVERSE_LOCATION.M4D_NET:
+		MAPOD4D_METAVERSE_LOCATION.M4D_NET:
 			ret_val = "res://mapod4d_multiverse_net"
-		Mapod4dUtils.MAPOD4D_METAVERSE_LOCATION.M4D_REMOTE:
+		MAPOD4D_METAVERSE_LOCATION.M4D_REMOTE:
 			ret_val = "user://mapod4d_multiverse_remote"
-		Mapod4dUtils.MAPOD4D_METAVERSE_LOCATION.M4D_PCK:
+		MAPOD4D_METAVERSE_LOCATION.M4D_PCK:
 			ret_val = "res://mapod4d_multiverse"
 	return ret_val
 

@@ -9,7 +9,7 @@ var main_panel_instance
 
 func _enter_tree():
 	main_panel_instance = main_panel.instantiate()
-	main_panel_instance.utils_instance = Mapod4dUtils.new()
+	main_panel_instance.utils_instance = Mapod4dTools.new()
 	if main_panel_instance.utils_instance != null:
 		print("UTILS OBJECT CREATED")
 	main_panel_instance.editor_interface = get_editor_interface()

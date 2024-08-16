@@ -62,7 +62,7 @@ func _get_option_visibility(path, option_name, options):
 
 func _import(source_file, save_path, options, r_platform_variants, r_gen_files):
 	var ret_val = false
-	var utils = Mapod4dUtils.new()
+	var utils = Mapod4dTools.new()
 	var metaverse_info = utils.metaverse_json_info_read(source_file)
 	if metaverse_info.ret_val == true:
 		print("IMPORT OK")
@@ -89,4 +89,3 @@ func _import(source_file, save_path, options, r_platform_variants, r_gen_files):
 #			resource.v3 = data_json.v3
 #			resource.v4 = data_json.v4
 	return ret_val
-

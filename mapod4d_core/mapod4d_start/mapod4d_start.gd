@@ -24,7 +24,7 @@ extends Mapod4dBaseUi
 # ----- public variables
 
 # ----- private variables
-var _utils = Mapod4dUtils.new()
+var _utils = mapod4dGenLoaderSingleton.getTools()
 
 # ----- onready variables
 @onready var start_button = $AspectRatioContainer/PanelContainer/CenterContainer/Start

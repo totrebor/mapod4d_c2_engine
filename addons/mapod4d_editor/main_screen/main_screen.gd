@@ -199,10 +199,10 @@ func _metaverse_list_refresh(location_id):
 		match location:
 			"dev":
 				utils_instance.metaverse_list_load(
-						Mapod4dUtils.MAPOD4D_METAVERSE_LOCATION.M4D_LOCAL)
+						utils_instance.MAPOD4D_METAVERSE_LOCATION.M4D_LOCAL)
 			"local":
 				utils_instance.metaverse_list_load(
-						Mapod4dUtils.MAPOD4D_METAVERSE_LOCATION.M4D_LOCAL)
+						utils_instance.MAPOD4D_METAVERSE_LOCATION.M4D_LOCAL)
 			_:
 				pass
 		utils_instance.metaverse_list_to_item_list(_metaverse_list)

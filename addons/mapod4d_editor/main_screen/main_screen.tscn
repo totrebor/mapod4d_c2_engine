@@ -2,6 +2,21 @@
 
 [ext_resource type="Script" path="res://addons/mapod4d_editor/main_screen/main_screen.gd" id="1_o2kiv"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4aje"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.376471, 0.376471, 0.376471, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyvoh"]
 content_margin_left = 5.0
 content_margin_right = 5.0
@@ -21,21 +36,6 @@ border_width_top = 2
 border_width_right = 2
 corner_radius_top_left = 6
 corner_radius_top_right = 6
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4aje"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.376471, 0.376471, 0.376471, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cmab"]
 bg_color = Color(0.282353, 0.282353, 0.282353, 1)
@@ -96,10 +96,9 @@ theme_override_constants/separation = 7
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-item_count = 2
 selected = 0
+item_count = 2
 popup/item_0/text = "dev"
-popup/item_0/id = 0
 popup/item_1/text = "local"
 popup/item_1/id = 1
 
@@ -131,13 +130,15 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/side_margin = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_d4aje")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_pyvoh")
 theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_g8wdx")
-theme_override_styles/panel = SubResource("StyleBoxFlat_d4aje")
+current_tab = 0
 
 [node name="Metaverse" type="VBoxContainer" parent="ScrollContainer/Margin/HBoxContainer/EditorTabContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
+metadata/_tab_index = 0
 
 [node name="Label2" type="Label" parent="ScrollContainer/Margin/HBoxContainer/EditorTabContainer/Metaverse"]
 layout_mode = 2
@@ -227,6 +228,7 @@ text = "Export Metaverse"
 [node name="Planet" type="VBoxContainer" parent="ScrollContainer/Margin/HBoxContainer/EditorTabContainer"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="Label" type="Label" parent="ScrollContainer/Margin/HBoxContainer/EditorTabContainer/Planet"]
 layout_mode = 2
@@ -247,6 +249,7 @@ text = "Create planet"
 [node name="Test" type="VBoxContainer" parent="ScrollContainer/Margin/HBoxContainer/EditorTabContainer"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="Test" type="Button" parent="ScrollContainer/Margin/HBoxContainer/EditorTabContainer/Test"]
 unique_name_in_owner = true
