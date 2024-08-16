@@ -36,7 +36,7 @@ run/main_run_args="++ -m4drun"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/mapod4d/plugin.cfg", "res://addons/mapod4d_editor/plugin.cfg", "res://addons/mapod4d_ma4d/plugin.cfg", "res://addons/mapod4d_metaverse_export/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/mapod4d_editor/plugin.cfg", "res://addons/mapod4d_ma4d/plugin.cfg", "res://addons/mapod4d_metaverse_export/plugin.cfg")
 
 [filesystem]
 

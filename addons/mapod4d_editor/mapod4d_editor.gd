@@ -19,9 +19,10 @@ func _enter_tree():
 
 
 func _exit_tree():
-	if main_panel_instance:
-		if main_panel_instance.utils_instance != null:
-			main_panel_instance.queue_free()
+	pass
+	#if main_panel_instance:
+		#if main_panel_instance.utils_instance != null:
+			#main_panel_instance.queue_free()
 
 
 func _has_main_screen():
@@ -42,4 +43,3 @@ func _get_plugin_name():
 
 func _get_plugin_icon():
 	return get_editor_interface().get_base_control().get_theme_icon("Node", "EditorIcons")
-

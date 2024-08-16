@@ -33,4 +33,3 @@ func setPlanetType(pType: Mapod4dPlanetCoreRes.MAPOD4D_PLANET_TYPE):
 	_core_data.planet_type = pType
 
 # ----- private methods
-

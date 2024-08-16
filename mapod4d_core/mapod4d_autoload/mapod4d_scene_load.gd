@@ -145,7 +145,7 @@ func _process(_delta):
 #				print_debug("loading failed")
 				set_process(false)
 			ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
-#				print_debug("loading invalid")
+				print_debug("loading invalid")
 				set_process(false)
 			_:
 #				print_debug("loading status unkwonwn")
@@ -327,10 +327,12 @@ func _start_load_scene(scene_res_path):
 ## called from _process
 ## load scene ended, _current_loaded_scene updated
 func _load_scene_ended():
+	## new scene resource
 	var scene_res = ResourceLoader.load_threaded_get(_loading_scene_res_path)
 	_loading_scene_res_path = ""
 	if scene_res != null:
 		await get_tree().create_timer(1).timeout
+		## create new scene
 		var scene_instance = scene_res.instantiate()
 		var placeholder = _mapod4d_main.get_node(MAPOD4D_LOADED_SCENE_NODE_TAG)
 		if placeholder.get_child_count() > 0:
@@ -339,6 +341,11 @@ func _load_scene_ended():
 				child.queue_free()
 		## new current scene
 		_current_loaded_scene = scene_instance
+		
+		if (_current_loaded_scene is Mapod4dBaseMetaverse):
+			pass
+		
+		## add visitor OLD
 		_add_mapod()
 		## add new loaded scene
 		if _current_loaded_scene.get_parent():
@@ -356,10 +363,6 @@ func _attach_current_loaded_scene_signals():
 	mapod4d_print("_attach_current_loaded_scene_signals()")
 	if _current_loaded_scene is Mapod4dBaseUi:
 		mapod4d_print("_current_loaded_scene is Mapod4dBaseUi")
-#		_current_loaded_scene.m4d_scene_requested.connect(
-	#			_on_m4d_scene_requested)
-#		_current_loaded_scene.m4d_scene_npb_requested.connect(
-#				_on_m4d_scene_npb_requested)
 		_current_loaded_scene.m4d_scene_requested.connect(
 				_on_m4d_scene_requested, CONNECT_DEFERRED)
 		_current_loaded_scene.m4d_scene_npb_requested.connect(
@@ -371,7 +374,9 @@ func _attach_current_loaded_scene_signals():
 
 
 # add mapod (visitor)
+# new version need
 func _add_mapod():
+	return
 	if (_current_loaded_scene is Mapod4dBaseMetaverse) or \
 	(_current_loaded_scene is Mapod4dPlanetSphere):
 		mapod4d_print("_current_loaded_scene is Mapod4dBaseMetaverse")
@@ -438,7 +443,7 @@ func _on_m4d_scene_requested(scene_res_path, fullscreen_flag):
 		mapod4d_print("not found " + scene_res_path)
 
 
-## elaborates signal load new metaverse 
+## elaborates signal load metaverse root
 ## with the progressbar and the fullscreen flag
 func _on_m4d_metaverse_requested(
 		location, metaverse_id, fullscreen_flag):
@@ -465,7 +470,7 @@ func _on_m4d_metaverse_requested(
 		mapod4d_print("not found " + metaverse_res_path)
 
 
-## elaborates signal load new metaverse 
+## elaborates signal load new bubble planet
 ## with the progressbar and the fullscreen flag
 func _on_m4d_planet_requested(
 		metaverse_res_path: String, planet_id: String, fullscreen_flag):

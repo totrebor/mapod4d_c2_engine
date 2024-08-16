@@ -1,12 +1,13 @@
 [gd_resource type="Environment" load_steps=4 format=3 uid="uid://c5r0toxf3n135"]
 
-[ext_resource type="Texture2D" uid="uid://63cdiho7f3kb" path="res://assets/img/metaverse.png" id="1_y78yv"]
+[ext_resource type="Texture2D" uid="uid://bcs2s13ua420c" path="res://assets/img/metaverse_004-c.jpg" id="1_42a5o"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_hluec"]
-panorama = ExtResource("1_y78yv")
+panorama = ExtResource("1_42a5o")
 
 [sub_resource type="Sky" id="Sky_ed0v6"]
 sky_material = SubResource("PanoramaSkyMaterial_hluec")
+process_mode = 2
 
 [resource]
 background_mode = 2

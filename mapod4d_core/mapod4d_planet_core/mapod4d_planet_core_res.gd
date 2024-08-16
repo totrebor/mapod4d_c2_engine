@@ -37,4 +37,3 @@ enum MAPOD4D_PLANET_TYPE {
 # ----- private variables
 
 # ----- onready variables
-

@@ -314,4 +314,3 @@ func _on_input_v4_text_changed(new_text):
 func _on_button_test_pressed():
 	print("button_test_pressed")
 	save_scene_in()
-

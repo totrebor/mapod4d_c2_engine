@@ -1,7 +1,7 @@
 # tool
 
 # class_name
-class_name Mapod4dBaseMetaverse
+class_name Mapod4dMetaverse
 
 # extends
 extends Node3D
