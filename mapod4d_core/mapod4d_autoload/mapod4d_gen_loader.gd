@@ -24,9 +24,10 @@ extends Node
 # ----- public variables
 
 # ----- private variables
+var _mapod4dTools = Mapod4dTools.new()
 
 # ----- onready variables
-@onready var _mapod4dTools = mapod4dGenLoaderSingleton.getTools()
+
 
 # ----- optional built-in virtual _init method
 

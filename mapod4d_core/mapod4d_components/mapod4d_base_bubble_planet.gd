@@ -23,10 +23,10 @@ extends Node3D
 # ----- public variables
 
 # ----- private variables
-var _mapod4dData = Mapod4dComponentData.new()
+
 
 # ----- onready variables
-
+@onready var _mapod4dData = Mapod4dComponentData.new()
 
 # ----- optional built-in virtual _init method
 
@@ -45,6 +45,10 @@ func _process(delta):
 # ----- public methods
 func getData():
 	return _mapod4dData
-	
+
+## base init func called from loader
+## after instance (ready ok)
+func mapod4dInit():
+	return true
 
 # ----- private methods

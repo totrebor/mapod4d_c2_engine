@@ -23,6 +23,7 @@ extends Control
 # ----- private variables
 
 # ----- onready variables
+@onready var flagNetConnetionRequested = false
 @onready var utils = $Utils
 @onready var progress_bar_panel = $Utils/ProgressBar
 @onready var progress_bar = \

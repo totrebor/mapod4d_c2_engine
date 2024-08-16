@@ -39,6 +39,7 @@ var _metaverse_id = null
 # ----- onready variables
 @onready var _utils = mapod4dGenLoaderSingleton.getTools()
 @onready var _loader = mapod4dSceneLoaderSingleton
+@onready var _mapod4dData = Mapod4dComponentData.new()
 
 # ----- optional built-in virtual _init method
 
@@ -80,5 +81,12 @@ func _process(_delta):
 	pass # Replace with function body.
 
 # ----- public methods
+func getData():
+	return _mapod4dData
+
+## base init func called from loader
+## after instance (ready ok)
+func mapod4dInit():
+	return true
 
 # ----- private methods
