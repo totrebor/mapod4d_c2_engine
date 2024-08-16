@@ -1,0 +1,204 @@
+[gd_scene load_steps=9 format=3 uid="uid://ch5b8bd1e1ha2"]
+
+[ext_resource type="Script" path="res://mapod4d_core/mapod4d_visitor/mapod4d_hud/mapod4d_hud.gd" id="1_gdbq4"]
+[ext_resource type="Script" path="res://mapod4d_core/mapod4d_visitor/mapod4d_hud/view_finder.gd" id="1_vm5tx"]
+[ext_resource type="Texture2D" uid="uid://e32tiyx053fp" path="res://assets/icons/keyboard/m_white_medium.png" id="3_7qyrb"]
+[ext_resource type="Texture2D" uid="uid://c67qy0qtq4t5e" path="res://assets/icons/keyboard/e_white_medium.png" id="4_pwr2k"]
+[ext_resource type="Texture2D" uid="uid://dlrm74bo8ji7l" path="res://assets/icons/xbox_360/xb360_x_medium.png" id="5_mipqt"]
+[ext_resource type="Texture2D" uid="uid://bh2aek2raxaio" path="res://assets/icons/keyboard/r_white_medium.png" id="6_45k1r"]
+[ext_resource type="Texture2D" uid="uid://dhjmelcpgaupg" path="res://assets/icons/xbox_360/xb360_y_medium.png" id="7_4erwr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gux8h"]
+bg_color = Color(0.376471, 0.376471, 0.376471, 0.176471)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Mapod4dHud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_gdbq4")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ViewFinder" type="Control" parent="CenterContainer"]
+layout_mode = 2
+script = ExtResource("1_vm5tx")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 4
+
+[node name="Left" type="MarginContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/Left"]
+layout_mode = 2
+
+[node name="Help" type="PanelContainer" parent="GridContainer/Left/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gux8h")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/Left/VBoxContainer/Help"]
+layout_mode = 2
+
+[node name="InfoTexture" type="TextureRect" parent="GridContainer/Left/VBoxContainer/Help/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_7qyrb")
+
+[node name="Info" type="Label" parent="GridContainer/Left/VBoxContainer/Help/HBoxContainer"]
+layout_mode = 2
+text = "Per richiamare il menu principale"
+
+[node name="Planet" type="PanelContainer" parent="GridContainer/Left/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gux8h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/Left/VBoxContainer/Planet"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="GridContainer/Left/VBoxContainer/Planet/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "WHEREAMI"
+
+[node name="PlanetData" type="Label" parent="GridContainer/Left/VBoxContainer/Planet/VBoxContainer"]
+layout_mode = 2
+
+[node name="Altitude" type="PanelContainer" parent="GridContainer/Left/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gux8h")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/Left/VBoxContainer/Altitude"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="GridContainer/Left/VBoxContainer/Altitude/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "ALTITUDE"
+
+[node name="AltitudeData" type="Label" parent="GridContainer/Left/VBoxContainer/Altitude/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Speed" type="PanelContainer" parent="GridContainer/Left/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gux8h")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/Left/VBoxContainer/Speed"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="GridContainer/Left/VBoxContainer/Speed/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "SPEED"
+
+[node name="SpeedData" type="Label" parent="GridContainer/Left/VBoxContainer/Speed/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Information" type="PanelContainer" parent="GridContainer/Left/VBoxContainer"]
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gux8h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/Left/VBoxContainer/Information"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="GridContainer/Left/VBoxContainer/Information/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "INFORMATION"
+
+[node name="InformationData" type="Label" parent="GridContainer/Left/VBoxContainer/Information/VBoxContainer"]
+layout_mode = 2
+
+[node name="InteractionE" type="PanelContainer" parent="GridContainer/Left/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/Left/VBoxContainer/InteractionE"]
+layout_mode = 2
+
+[node name="KeyE" type="TextureRect" parent="GridContainer/Left/VBoxContainer/InteractionE/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_pwr2k")
+
+[node name="JoyPadX" type="TextureRect" parent="GridContainer/Left/VBoxContainer/InteractionE/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_mipqt")
+
+[node name="InteractionEData" type="Label" parent="GridContainer/Left/VBoxContainer/InteractionE/HBoxContainer"]
+layout_mode = 2
+
+[node name="InteractionR" type="PanelContainer" parent="GridContainer/Left/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/Left/VBoxContainer/InteractionR"]
+layout_mode = 2
+
+[node name="KeyR" type="TextureRect" parent="GridContainer/Left/VBoxContainer/InteractionR/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_45k1r")
+
+[node name="JoyPadY" type="TextureRect" parent="GridContainer/Left/VBoxContainer/InteractionR/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_4erwr")
+
+[node name="InteractionRData" type="Label" parent="GridContainer/Left/VBoxContainer/InteractionR/HBoxContainer"]
+layout_mode = 2
+
+[node name="DebugLeft" type="MarginContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/DebugLeft"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/DebugLeft/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelStatus" type="Label" parent="GridContainer/DebugLeft/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Status:"
+
+[node name="Status" type="Label" parent="GridContainer/DebugLeft/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DebugRight" type="MarginContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Right" type="MarginContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
