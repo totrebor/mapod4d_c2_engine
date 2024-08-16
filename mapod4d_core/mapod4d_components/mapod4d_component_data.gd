@@ -29,7 +29,13 @@ var _description: String = "None"
 
 
 # ----- public methods
-func gatDesription():
+func setDescription(description: String):
+	var tmp = _description
+	_description = description
+	return tmp
+
+
+func gatDescription():
 	return _description
 
 # ----- private methods

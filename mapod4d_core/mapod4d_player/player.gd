@@ -77,34 +77,34 @@ func _process(_delta):
 
 func _unhandled_input(event):
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		if event.is_action_pressed("mapod_a"):
+		if event.is_action_pressed("mapod_thrust_l"):
 			_mp_mv_left = 1
-		elif event.is_action_released("mapod_a"):
+		elif event.is_action_released("mapod_thrust_l"):
 			_mp_mv_left = 0
 
-		elif event.is_action_pressed("mapod_d"):
+		elif event.is_action_pressed("mapod_thrust_r"):
 			_mp_mv_right = 1
-		elif event.is_action_released("mapod_d"):
+		elif event.is_action_released("mapod_thrust_r"):
 			_mp_mv_right = 0
 
-		elif event.is_action_pressed("mapod_q"):
+		elif event.is_action_pressed("mapod_thrust_u"):
 			_mp_mv_up = 1
-		elif event.is_action_released("mapod_q"):
+		elif event.is_action_released("mapod_thrust_u"):
 			_mp_mv_up = 0
 
-		elif event.is_action_pressed("mapod_space"):
+		elif event.is_action_pressed("mapod_thrust_d"):
 			_mp_mv_down = 1
-		elif event.is_action_released("mapod_space"):
+		elif event.is_action_released("mapod_thrust_d"):
 			_mp_mv_down = 0
 
-		elif event.is_action_pressed("mapod_w"):
+		elif event.is_action_pressed("mapod_thrust_f"):
 			_mp_mv_forward = 1
-		elif event.is_action_released("mapod_w"):
+		elif event.is_action_released("mapod_thrust_f"):
 			_mp_mv_forward = 0
 
-		elif event.is_action_pressed("mapod_s"):
+		elif event.is_action_pressed("mapod_thrust_b"):
 			_mp_mv_backward = 1
-		elif event.is_action_released("mapod_s"):
+		elif event.is_action_released("mapod_thrust_b"):
 			_mp_mv_backward = 0
 
 		elif event.is_action_pressed("mapod_rotate_u"):

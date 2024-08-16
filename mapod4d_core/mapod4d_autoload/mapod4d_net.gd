@@ -29,6 +29,7 @@ const LATENCY_QUEUE_SIZE = 11
 
 # ----- private variables
 var _playerSpawnerArea = null
+var _stadAlonePlayer = null
 
 # ----- onready variables private variables
 @onready var _flag_started = false
@@ -79,22 +80,21 @@ func connect_server(_login, _password):
 	if _flag_started:
 		var multiplayer_peer = ENetMultiplayerPeer.new()
 		if multiplayer_peer != null:
+			if _stadAlonePlayer != null:
+				_playerSpawnerArea.remove_child(_stadAlonePlayer)
+				_stadAlonePlayer.queue_free()
 			if multiplayer_peer.create_client(ADDRESS, PORT) == OK:
 				multiplayer.multiplayer_peer = multiplayer_peer
 				var peer = multiplayer_peer.get_peer(1)
 				if peer != null:
 					## 3 seconds max timeout
 					multiplayer_peer.get_peer(1).set_timeout(0, 0, 3000)
-				var isc = multiplayer.connected_to_server.is_connected(
-							_on_connected_to_server)
+				var isc = multiplayer.connected_to_server.is_connected(_on_connected_to_server)
 				if !isc:
-					multiplayer.connected_to_server.connect(
-							_on_connected_to_server)
-				isc = multiplayer.connected_to_server.is_connected(
-							_on_connection_failed)
+					multiplayer.connected_to_server.connect(_on_connected_to_server)
+				isc = multiplayer.connected_to_server.is_connected(_on_connection_failed)
 				if !isc:
-					multiplayer.connection_failed.connect(
-							_on_connection_failed)
+					multiplayer.connection_failed.connect(_on_connection_failed)
 			else:
 				_network_error = true
 				call_deferred("connection_failed")
@@ -217,11 +217,16 @@ func serverTime():
 
 func connection_failed():
 	print("Connection ERROR!")
+	buildStandAlonePlayer()
+
+
+func buildStandAlonePlayer():
 	_peer_id = null
 	_playerSpawnerArea.local_spawn()
 	await get_tree().create_timer(1).timeout
 	var player_node = _playerSpawnerArea.get_local_player()
 	player_node.player_event_requested.connect(_on_player_event_requested)
+	_stadAlonePlayer = player_node
 
 
 # ----- private methods

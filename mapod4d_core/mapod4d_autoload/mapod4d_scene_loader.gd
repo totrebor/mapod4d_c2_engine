@@ -342,10 +342,7 @@ func _load_scene_ended():
 				child.queue_free()
 		## new current scene
 		_current_loaded_scene = scene_instance
-		
-		if (_current_loaded_scene is Mapod4dMetaverse):
-			pass
-		
+		_init()
 		## add visitor OLD
 		_add_mapod()
 		## add new loaded scene
@@ -354,8 +351,27 @@ func _load_scene_ended():
 					_current_loaded_scene)
 		placeholder.add_child(_current_loaded_scene)
 		_current_loaded_scene.set_owner(get_node("/root"))
+		_setup()
 		_attach_current_loaded_scene_signals()
 	_end_loading_progress_bar()
+
+
+## init scene before added as child
+func _init():
+	var flagNetConnectionRequested = false
+	if _mapod4d_main is Mapod4dMain:
+		flagNetConnectionRequested = _mapod4d_main.get_fNCR()
+	var pdata = Mapod4dComponentInitData.new()
+	pdata.setFlagNetConnectionRequested(flagNetConnectionRequested)
+	
+	if _current_loaded_scene is Mapod4dMetaverse:
+		_current_loaded_scene.mapod4dInit(pdata)
+
+
+
+## setup scene after added as child
+func _setup():
+	pass
 
 
 ## load scene no progress bar and update
@@ -374,7 +390,7 @@ func _attach_current_loaded_scene_signals():
 				_on_m4d_planet_requested, CONNECT_DEFERRED)
 
 
-# add mapod (visitor)
+# add mapod (visitor) OLD
 # new version need
 func _add_mapod():
 	return

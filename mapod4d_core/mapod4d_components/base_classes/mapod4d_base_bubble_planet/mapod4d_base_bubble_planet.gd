@@ -23,10 +23,10 @@ extends Node3D
 # ----- public variables
 
 # ----- private variables
-
+var _mapod4dData = null
 
 # ----- onready variables
-@onready var _mapod4dData = Mapod4dComponentData.new()
+
 
 # ----- optional built-in virtual _init method
 
@@ -34,6 +34,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready(): 
+	_mapod4dData = Mapod4dComponentData.new()
 	_mapod4dData.setDescriprion("Mapod4dBaseBubblePlanet")
 
 # ----- remaining built-in virtual methods
@@ -48,7 +49,14 @@ func getData():
 
 ## base init func called from loader
 ## after instance (ready ok)
-func mapod4dInit():
+func mapod4dInit(_data: Mapod4dComponentInitData):
 	return true
+
+
+## base setup func called from loader
+## after instance (ready ok)
+func mapod4dSetup(_data: Mapod4dComponentInitData):
+	return true
+
 
 # ----- private methods
