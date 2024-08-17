@@ -9,7 +9,7 @@
 class_name Mapod4dMetaverse
 
 # extends
-extends Node3D
+extends Mapod4dBaseBubblePlanet
 
 
 # ----- signals
@@ -32,7 +32,7 @@ var location = Mapod4dTools.MAPOD4D_METAVERSE_LOCATION.M4D_LOCAL
 # ----- private variables
 var _list_of_planets = null
 var _metaverse_id = null
-var _mapod4dData = null
+
 
 # ----- onready variables
 @onready var _utils = mapod4dGenLoaderSingleton.getTools()
@@ -44,8 +44,7 @@ var _mapod4dData = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_mapod4dData = Mapod4dComponentData.new()
-	_mapod4dData.setDescription("Mapod4dMetaverse")
+	super()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	location = _loader.current_metaverse_location()
 	_metaverse_id = str(name).to_lower()
@@ -57,8 +56,9 @@ func _ready():
 			"DEBUG Planets " + str(_list_of_planets.list.size()))
 	var placeolder = get_node_or_null("Planets")
 	if placeolder != null:
-		var x_pos = 0.0
-		var z_pos = 0.0
+		var x_pos = -1.6
+		var z_pos = 7.0
+		var step = 0.9
 		for planet_data in _list_of_planets.list:
 			if planet_data is Mapod4dPlanetCoreRes:
 				var planet = planet_sphere_res.instantiate()
@@ -68,8 +68,10 @@ func _ready():
 									location, _metaverse_id)
 				planet.set_name(planet_data.id)
 				planet.set_position(Vector3(x_pos, 0, z_pos))
-				z_pos = z_pos - (1.5 + (1.0 / (1.0 + x_pos)))
-				x_pos = x_pos + 3.0
+				#x_pos = x_pos - (1.5 + (1.0 / (1.0 + x_pos)))
+				x_pos = x_pos + 1.5 * step
+				z_pos = z_pos + 3.5
+				step = step * 1.5
 				placeolder.add_child(planet)
 				planet.set_owner(placeolder)
 
@@ -80,23 +82,6 @@ func _process(_delta):
 	pass # Replace with function body.
 
 # ----- public methods
-## componenents common data
-func getData():
-	return _mapod4dData
 
-
-## base init func called from loader
-## after instance (ready ok)
-func mapod4dInit(_data: Mapod4dComponentInitData):
-	var flagNet = _data.getFlagNetConnectionRequested()
-	if !flagNet:
-		mapod4dNetSingleton.buildStandAlonePlayer()
-	return true
-
-
-## base setup func called from loader
-## after instance (ready ok)
-func mapod4dSetup(_data: Mapod4dComponentInitData):
-	return true
 
 # ----- private methods

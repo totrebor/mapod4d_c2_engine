@@ -364,7 +364,7 @@ func _init():
 	var pdata = Mapod4dComponentInitData.new()
 	pdata.setFlagNetConnectionRequested(flagNetConnectionRequested)
 	
-	if _current_loaded_scene is Mapod4dMetaverse:
+	if _current_loaded_scene is Mapod4dBaseBubblePlanet:
 		_current_loaded_scene.mapod4dInit(pdata)
 
 

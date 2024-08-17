@@ -83,6 +83,7 @@ func connect_server(_login, _password):
 			if _stadAlonePlayer != null:
 				_playerSpawnerArea.remove_child(_stadAlonePlayer)
 				_stadAlonePlayer.queue_free()
+			_stadAlonePlayer = null
 			if multiplayer_peer.create_client(ADDRESS, PORT) == OK:
 				multiplayer.multiplayer_peer = multiplayer_peer
 				var peer = multiplayer_peer.get_peer(1)
@@ -221,12 +222,13 @@ func connection_failed():
 
 
 func buildStandAlonePlayer():
-	_peer_id = null
-	_playerSpawnerArea.local_spawn()
-	await get_tree().create_timer(1).timeout
-	var player_node = _playerSpawnerArea.get_local_player()
-	player_node.player_event_requested.connect(_on_player_event_requested)
-	_stadAlonePlayer = player_node
+	if _stadAlonePlayer == null:
+		_peer_id = null
+		_playerSpawnerArea.local_spawn()
+		await get_tree().create_timer(1).timeout
+		var player_node = _playerSpawnerArea.get_local_player()
+		player_node.player_event_requested.connect(_on_player_event_requested)
+		_stadAlonePlayer = player_node
 
 
 # ----- private methods

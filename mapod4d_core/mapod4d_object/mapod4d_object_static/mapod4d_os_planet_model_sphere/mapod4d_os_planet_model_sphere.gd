@@ -52,8 +52,3 @@ func interaction_e():
 	internal_object.request.arguments["planet_id"] = planet_id
 
 # ----- private methods
-
-
-
-
-

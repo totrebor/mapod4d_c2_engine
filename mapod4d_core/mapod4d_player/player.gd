@@ -107,9 +107,9 @@ func _unhandled_input(event):
 		elif event.is_action_released("mapod_thrust_b"):
 			_mp_mv_backward = 0
 
-		elif event.is_action_pressed("mapod_rotate_u"):
+		elif event.is_action_pressed("mapod_rotate_d"):
 			_mp_rt_up = 1
-		elif event.is_action_released("mapod_rotate_u"):
+		elif event.is_action_released("mapod_rotate_d"):
 			_mp_rt_up = 0
 
 		#var move_vec = Vector3(
@@ -121,9 +121,9 @@ func _unhandled_input(event):
 			#float(event.is_action_pressed("mapod_s")) * -1.0
 		#)
 		
-		elif event.is_action_pressed("mapod_rotate_d"):
+		elif event.is_action_pressed("mapod_rotate_u"):
 			_mp_rt_down = 1
-		elif event.is_action_released("mapod_rotate_d"):
+		elif event.is_action_released("mapod_rotate_u"):
 			_mp_rt_down = 0
 
 		elif event.is_action_pressed("mapod_rotate_r"):

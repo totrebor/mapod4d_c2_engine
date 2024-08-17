@@ -1,16 +1,14 @@
-# tool
+## MAPOD Avatar
+##
+## forward thrust is on Z axis
+##
+
 
 # class_name
+class_name Mapod
 
 # extends
 extends CharacterBody3D
-
-## A brief description of your script.
-##
-## A more detailed description of the script.
-##
-## @tutorial:            http://the/tutorial1/url.com
-## @tutorial(Tutorial2): http://the/tutorial2/url.com
 
 
 # ----- signals
@@ -20,8 +18,7 @@ extends CharacterBody3D
 # ----- constants
 
 # ----- exported variables
-@export var mouse_sensitivity = 0.01
-@export var defaultSpeed = 1.0
+@export var defaultSpeed = 1.8
 
 # ----- public variables
 var thrust_event_buffer
@@ -142,7 +139,7 @@ func _physics_process(_delta):
 				var cet = MPEventBuilder.gain_tick(current_rotate_event)
 				var ce = confirmed_rotate_event_buffer.get_event_cb(cet)
 				if ce != null:
-					if !_compare_end_event_mapod_position(ce):
+					if !_compare_end_event_mapod_rotation(ce):
 						print("rotateend of event not confirmed 0")
 						_collimation_inc()
 				else:
@@ -261,7 +258,7 @@ func mapod_thrust(speed: Vector3):
 
 # ----- private methods
 
-func _compare_end_event_mapod_position(mp_event):
+func _compare_end_event_mapod_position(mp_event) -> bool:
 	var ret_val = false
 	var conf_position = MPEventBuilder.gain_input(mp_event)
 	print("_compare_end_event_mapod_position conf_position ", conf_position)
@@ -279,6 +276,10 @@ func _compare_end_event_mapod_position(mp_event):
 		move_and_collide(diff)
 		ret_val = true
 	return ret_val
+
+
+func _compare_end_event_mapod_rotation(mp_event) -> bool:
+	return true
 
 
 func _collimation_reset():

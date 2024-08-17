@@ -30,11 +30,12 @@ rings = 100
 material = SubResource("StandardMaterial3D_qllnu")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+transform = Transform3D(-0.0871558, 0, 0.996195, 0, 1, 0, -0.996195, 0, -0.0871558, 25, 0, 20)
 light_energy = 0.2
 shadow_enabled = true
 
 [node name="Sun" type="CSGSphere3D" parent="DirectionalLight3D"]
+transform = Transform3D(0.994602, 0, 0.103765, 0, 1, 0, -0.103765, 0, 0.994602, 9.12862, 0, 0)
 radius = 0.15
 radial_segments = 100
 rings = 100

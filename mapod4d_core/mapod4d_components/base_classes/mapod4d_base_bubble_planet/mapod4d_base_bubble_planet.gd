@@ -19,6 +19,7 @@ extends Node3D
 # ----- constants
 
 # ----- exported variables
+@export var mDescription = "Mapod4dBaseBubblePlanet"
 
 # ----- public variables
 
@@ -35,7 +36,7 @@ var _mapod4dData = null
 # Called when the node enters the scene tree for the first time.
 func _ready(): 
 	_mapod4dData = Mapod4dComponentData.new()
-	_mapod4dData.setDescriprion("Mapod4dBaseBubblePlanet")
+	_mapod4dData.setDescription(mDescription)
 
 # ----- remaining built-in virtual methods
 
@@ -50,6 +51,9 @@ func getData():
 ## base init func called from loader
 ## after instance (ready ok)
 func mapod4dInit(_data: Mapod4dComponentInitData):
+	var flagNet = _data.getFlagNetConnectionRequested()
+	if !flagNet:
+		mapod4dNetSingleton.buildStandAlonePlayer()
 	return true
 
 
