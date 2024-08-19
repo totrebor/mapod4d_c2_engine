@@ -92,10 +92,12 @@ func connect_server(_login, _password):
 					multiplayer_peer.get_peer(1).set_timeout(0, 0, 3000)
 				var isc = multiplayer.connected_to_server.is_connected(_on_connected_to_server)
 				if !isc:
-					multiplayer.connected_to_server.connect(_on_connected_to_server)
+					isc = multiplayer.connected_to_server.connect(_on_connected_to_server)
+				if !isc:
+					isc = multiplayer.server_disconnected.connect(_on_disconnected_from_server)
 				isc = multiplayer.connected_to_server.is_connected(_on_connection_failed)
 				if !isc:
-					multiplayer.connection_failed.connect(_on_connection_failed)
+					isc = multiplayer.connection_failed.connect(_on_connection_failed)
 			else:
 				_network_error = true
 				call_deferred("connection_failed")
@@ -106,8 +108,12 @@ func disconnect_server():
 	if multiplayer.multiplayer_peer != null:
 		multiplayer.connected_to_server.disconnect(_on_connected_to_server)
 		multiplayer.connection_failed.disconnect(_on_connection_failed)
-		multiplayer.multiplayer_peer.disconnect_peer(1)
+		if multiplayer.multiplayer_peer.get_connection_status() == \
+				MultiplayerPeer.CONNECTION_CONNECTED:
+			multiplayer.multiplayer_peer.disconnect_peer(1)
 		multiplayer.multiplayer_peer = null
+	if _sync_timer != null:
+		_sync_timer.queue_free()
 
 
 ## autenticantion client side
@@ -218,6 +224,8 @@ func serverTime():
 
 func connection_failed():
 	print("Connection ERROR!")
+	if _sync_timer != null:
+		_sync_timer.queue_free()
 	buildStandAlonePlayer()
 
 
@@ -322,6 +330,11 @@ func _on_connection_failed():
 	connection_failed()
 
 
+func _on_disconnected_from_server():
+	print("_on_disconnected_from_server") 
+	disconnect_server()
+
+## heart of players comunication
 func _on_player_event_requested(player_object, mp_event):
 	print("PLAYER EVENT")
 	var player = player_object

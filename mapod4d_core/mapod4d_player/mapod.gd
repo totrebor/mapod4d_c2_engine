@@ -278,7 +278,7 @@ func _compare_end_event_mapod_position(mp_event) -> bool:
 	return ret_val
 
 
-func _compare_end_event_mapod_rotation(mp_event) -> bool:
+func _compare_end_event_mapod_rotation(_mp_event) -> bool:
 	return true
 
 
